@@ -1,0 +1,75 @@
+{% extends "shop/base.html" %}
+{% block content %}
+<div class="product-list" style="float:none; max-width:400px; margin:40px auto;">
+    <h2>Create an Account</h2>
+    <div id="alert" style="color:#dc1616; margin-bottom:10px; font-size:14px;"></div>
+    
+    <form id="register-form">
+        <p>
+            <label>Username</label>
+            <input type="text" id="username" required>
+        </p>
+        <p>
+            <label>Email Address</label>
+            <input type="email" id="email">
+        </p>
+        <p>
+            <label>Password</label>
+            <input type="password" id="password" required>
+        </p>
+        <p style="overflow:auto; width:100%; margin-bottom:15px;">
+            <label style="float:left; clear:none; margin-right:10px; cursor:pointer;">
+                <input type="checkbox" id="is-seller" style="width:auto; float:left; margin-right:8px; margin-bottom:0; padding:0;">
+                Register as a Merchant/Seller
+            </label>
+        </p>
+        <input type="submit" value="Sign Up" style="width:100%; cursor:pointer;">
+    </form>
+    <p style="margin-top:20px; font-size:14px;">
+        Already have an account? <a href="{% url 'html_login' %}">Log In here</a>
+    </p>
+</div>
+
+<script>
+document.getElementById('register-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const alertBox = document.getElementById('alert');
+    alertBox.innerText = ""; // Clear out previous alert notices
+
+    try {
+        const res = await fetch("{% url 'api_register' %}", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                is_seller: document.getElementById('is-seller').checked // FIXED: Uses underscore to match Python request.data.get()
+            })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            // 1. Secure token assignments inside local memory
+            localStorage.setItem('access_token', data.tokens.access);
+            localStorage.setItem('refresh_token', data.tokens.refresh);
+
+            // 2. FIXED REDIRECTION:
+            // Since you have multi-language roots enabled (/en/, /es/), 
+            // checking 'data.is_seller' allows you to redirect to your absolute platform view URLs
+            if (data.is_seller) {
+                window.location.href = "/seller/dashboard/"; // Change to your exact seller dashboard URL path string
+            } else {
+                window.location.href = "/"; // Instantly throws them back to your main store view page catalog
+            }
+        } else {
+            alertBox.innerText = data.error || "An error occurred during account creation.";
+        }
+    } catch (err) {
+        alertBox.innerText = "Network transmission error. Please check your connection.";
+    }
+});
+</script>
+{% endblock %}

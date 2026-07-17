@@ -1,0 +1,10 @@
+{% extends "shop/base.html" %}
+{% block content %}
+<div style="text-align:center; padding:100px 0;">
+    <h2>Logging you out securely...</h2>
+</div>
+<script>
+    localStorage.clear();
+    window.location.href = "/";
+</script>
+{% endblock %}

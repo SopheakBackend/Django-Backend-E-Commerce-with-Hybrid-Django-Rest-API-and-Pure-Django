@@ -1,0 +1,177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-23 18:39+0700\n"
+"PO-Revision-Date: 2026-06-23 18:41+0000\n"
+"Last-Translator:   <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\cart\forms.py:12
+msgid "Quantity"
+msgstr "បរិមាណ"
+
+#: .\coupons\forms.py:6
+msgid "Coupon"
+msgstr "គូប៉ុង"
+
+#: .\myshop\settings.py:107
+msgid "English"
+msgstr "អង់គ្លេស"
+
+#: .\myshop\settings.py:108
+msgid "Spanish"
+msgstr "អេស្ប៉ាញ"
+
+#: .\myshop\settings.py:109
+msgid "Khmer"
+msgstr "ខ្មែរ"
+
+#: .\myshop\urls.py:10
+msgid "coupons/"
+msgstr "គូប៉ុង/"
+
+#: .\myshop\urls.py:11
+msgid "cart/"
+msgstr "cart/"
+
+#: .\myshop\urls.py:12
+msgid "orders/"
+msgstr "ការបញ្ជាទិញ/"
+
+#: .\myshop\urls.py:13
+msgid "payment/"
+msgstr "ទូទាត់/"
+
+#: .\orders\models.py:10
+msgid "first name"
+msgstr "នាមខ្លួន"
+
+#: .\orders\models.py:11
+msgid "last name"
+msgstr "នាមត្រកូល"
+
+#: .\orders\models.py:12
+msgid "e-mail"
+msgstr "អ៊ីមែល"
+
+#: .\orders\models.py:13
+msgid "address"
+msgstr "អាសយដ្ឋាន"
+
+#: .\orders\models.py:14
+msgid "postal code"
+msgstr "លេខកូដប្រៃសណីយ៍"
+
+#: .\orders\models.py:15
+msgid "city"
+msgstr "ទីក្រុង"
+
+#: .\orders\urls.py:8
+msgid "create/"
+msgstr "បង្កើត/"
+
+#: .\payment\urls.py:8
+msgid "process/"
+msgstr "ដំណើរការ/"
+
+#: .\payment\urls.py:9
+msgid "completed/"
+msgstr "បានបញ្ចប់/"
+
+#: .\payment\urls.py:10
+msgid "canceled/"
+msgstr "បានបោះបង់/"
+
+#: .\template\orders\order\create.html:5
+msgid "Checkout"
+msgstr "ទូទាត់"
+
+#: .\template\orders\order\create.html:7
+msgid "Your order"
+msgstr "ការបញ្ជាទិញរបស់អ្នក"
+
+#: .\template\orders\order\create.html:17
+#, python-format
+msgid ""
+"\n"
+"                        \"%(code)s\" (%(discount)s%% off)\n"
+"                    "
+msgstr ""
+"\n"
+"                        \"%(code)s\" (បញ្ចុះតម្លៃ %(discount)s%%)\n"
+"                    "
+
+#: .\template\orders\order\create.html:25
+msgid "Total"
+msgstr "សរុប"
+
+#: .\template\orders\order\create.html:31
+msgid "Place order"
+msgstr "បញ្ជាទិញ"
+
+#: .\template\shop\base.html:6 .\template\shop\base.html:11
+msgid "My shop"
+msgstr "ហាងរបស់ខ្ញុំ"
+
+#: .\template\shop\base.html:16
+msgid "Language"
+msgstr "ភាសា"
+
+#: .\template\shop\base.html:32
+msgid "Your cart:"
+msgstr "Cart របស់អ្នក៖"
+
+#: .\template\shop\base.html:34
+#, python-format
+msgid ""
+"\n"
+"                        %(items)s item, $%(total)s\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        %(items)s items, $%(total)s\n"
+"                    "
+msgstr[0] ""
+"\n"
+"                %(items)s ទំនិញ, $%(total)s\n"
+"              "
+msgstr[1] ""
+"\n"
+"                %(items)s ទំនិញ, $%(total)s\n"
+"              "
+
+#: .\template\shop\base.html:41
+msgid "Your cart is empty"
+msgstr "Cart របស់អ្នកទទេ"
+
+#: .\template\shop\product\detail.html:18
+msgid "Add to cart"
+msgstr "បញ្ចូលទៅ Cart"
+
+#: .\template\shop\product\detail.html:23
+msgid "People who bought this also bought"
+msgstr "អ្នកដែលបានទិញនេះក៏បានទិញ"
+
+#: .\template\shop\product\list.html:6
+msgid "Categories"
+msgstr "ប្រភេទ"
+
+#: .\template\shop\product\list.html:19
+msgid "Products"
+msgstr "ផលិតផល"
+
+#~ msgid "My shopx"
+#~ msgstr "ហាងរបស់ខ្ញុំ"

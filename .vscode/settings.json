@@ -1,0 +1,15 @@
+{
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python-envs.terminal.showActivateButton": true,
+     "python.defaultInterpreterPath": "D:\\Python Study\\python_work\\Django Rest Framework\\venv\\myshop\\Scripts\\python.exe",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell venv": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell",
+            "args": ["-NoExit", "-ExecutionPolicy", "Bypass", "-File", "D:\\Python Study\\python_work\\Django Rest Framework\\venv\\myshop\\Scripts\\Activate.ps1"]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell venv"
+}

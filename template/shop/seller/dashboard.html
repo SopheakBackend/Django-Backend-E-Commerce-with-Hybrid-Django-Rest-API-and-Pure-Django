@@ -1,0 +1,47 @@
+{% extends "shop/base.html" %}
+{% block content %}
+<div id="main" style="width:100%; margin:0; float:none;">
+    <div style="overflow:auto; margin-bottom:20px;">
+        <h2 style="float:left; margin:0;">Seller Management Dashboard</h2>
+        <a href="{% url 'shop:product_create' %}" class="button" style="float:right;">+ Add New Product</a>
+    </div>
+
+    <table class="cart">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Available</th>
+                <th style="text-align:right;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" style="width:60px; height:auto; border-radius:4px;">
+                        {% else %}
+                            <div style="width:60px; height:60px; background:#efefef; border-radius:4px;"></div>
+                        {% endif %}
+                    </td>
+                    <td><strong>{{ product.name }}</strong></td>
+                    <td>${{ product.price }}</td>
+                    <td>{% if product.available %}Yes{% else %}No{% endif %}</td>
+                    <td style="text-align:right;">
+                        <a href="{% url 'shop:product_update' product.id %}" class="button light" style="padding:6px 12px; font-size:12px; margin-right:5px;">Edit</a>
+                        <a href="{% url 'shop:product_delete' product.id %}" class="button" style="background:#dc1616; padding:6px 12px; font-size:12px;">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" style="text-align:center; padding:40px; color:#666;">
+                        You haven't listed any products yet. Click "+ Add New Product" to get started!
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

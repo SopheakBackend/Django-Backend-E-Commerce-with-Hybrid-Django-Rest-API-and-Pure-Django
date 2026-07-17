@@ -1,0 +1,15 @@
+{% extends "shop/base.html" %}
+{% block content %}
+<div class="product-list" style="float:none; max-width:450px; margin:60px auto; text-align:center;">
+    <h2 class="neg">Delete Product?</h2>
+    <p style="margin:20px 0; color:#444; font-size:15px; line-height:1.5;">
+        Are you absolutely sure you want to delete <strong>"{{ product.name }}"</strong>? This action is permanent and cannot be undone.
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Yes, Delete Permanently" style="background:#dc1616; padding:12px 24px; cursor:pointer; margin-right:10px;">
+        <a href="{% url 'shop:seller_dashboard' %}" class="button light" style="padding:12px 24px;">No, Go Back</a>
+    </form>
+</div>
+{% endblock %}

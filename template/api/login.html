@@ -1,0 +1,46 @@
+{% extends "shop/base.html" %}
+{% block content %}
+<div class="product-list" style="float:none; max-width:400px; margin:40px auto;">
+    <h2>Login to Your Account</h2>
+    <div id="alert" style="color:#dc1616; margin-bottom:10px; font-size:14px;"></div>
+    
+    <form  id="login-form">
+        <p>
+            <label>Username</label>
+            <input type="text" id="username" required>
+        </p>
+        <p>
+            <label>Password</label>
+            <input type="password" id="password" required>
+        </p>
+        <input type="submit" value="Log In" style="width:100%; margin-top:10px; cursor:pointer;">
+    </form>
+    <p style="margin-top:20px; font-size:14px;">
+        New here? <a href="{% url 'html_register' %}">Create an account</a>
+    </p>
+</div>
+
+<script>
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const res = await fetch("{% url 'api_login' %}", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value
+        })
+    });
+    const data = await res.json();
+    if (res.ok) {
+        localStorage.setItem('access_token', data.tokens.access);
+        localStorage.setItem('refresh_token', data.tokens.refresh);
+        if (data.is_seller) {
+            window.location.href = "/seller/dashboard/";
+        } else {
+            window.location.href = "/";
+        }
+    } 
+});
+</script>
+{% endblock %}
