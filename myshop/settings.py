@@ -184,9 +184,9 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'phak.domo@gmail.com'
-EMAIL_HOST_PASSWORD = 'uuvo rbjl wifc jzcl'
-DEFAULT_FROM_EMAIL = 'Django E-Commerce <phak.domo@gmail.com>'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = 'Django E-Commerce <>'
 
 #Stripe Api key for testing 
 STRIPE_PUBLISHED_KEY = config('STRIPE_PUBLISHED_KEY')

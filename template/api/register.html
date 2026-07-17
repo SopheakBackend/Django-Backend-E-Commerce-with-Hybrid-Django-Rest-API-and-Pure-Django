@@ -35,7 +35,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
     e.preventDefault();
     
     const alertBox = document.getElementById('alert');
-    alertBox.innerText = ""; // Clear out previous alert notices
+    alertBox.innerText = ""; 
 
     try {
         const res = await fetch("{% url 'api_register' %}", {
@@ -45,24 +45,21 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
                 username: document.getElementById('username').value,
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value,
-                is_seller: document.getElementById('is-seller').checked // FIXED: Uses underscore to match Python request.data.get()
+                is_seller: document.getElementById('is-seller').checked 
             })
         });
 
         const data = await res.json();
 
         if (res.ok) {
-            // 1. Secure token assignments inside local memory
+            
             localStorage.setItem('access_token', data.tokens.access);
             localStorage.setItem('refresh_token', data.tokens.refresh);
 
-            // 2. FIXED REDIRECTION:
-            // Since you have multi-language roots enabled (/en/, /es/), 
-            // checking 'data.is_seller' allows you to redirect to your absolute platform view URLs
             if (data.is_seller) {
-                window.location.href = "/seller/dashboard/"; // Change to your exact seller dashboard URL path string
+                window.location.href = "/seller/dashboard/";
             } else {
-                window.location.href = "/"; // Instantly throws them back to your main store view page catalog
+                window.location.href = "/"; 
             }
         } else {
             alertBox.innerText = data.error || "An error occurred during account creation.";
