@@ -59,7 +59,7 @@ python manage.py migrate
 ```
 
 ### Step 2: Spin Up Infrastructure Terminals
-Open **four separate terminal windows/panes** to operate the multi-service pipeline:
+Open **five separate terminal windows/panes** to operate the multi-service pipeline:
 
 #### 💻 Terminal 1: Launch Redis (Sorted Sets Backend)
 Run the exact version-pinned Redis image using Docker to serve your sorting and ranking tasks:
@@ -67,20 +67,26 @@ Run the exact version-pinned Redis image using Docker to serve your sorting and 
 docker run -it --rm --name redis -p 6379:6379 redis:7.2.4
 ```
 
-#### 💳 Terminal 2: Listen for Stripe Webhook Events
+#### 🐇 Terminal 2: Launch RabbitMQ (Message Broker)
+Run the RabbitMQ container with the management plugin dashboard active:
+```bash
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.13.1-management
+```
+
+#### 💳 Terminal 3: Listen for Stripe Webhook Events
 Tunnel live Stripe asynchronous event payloads directly down into your local running Django development node application endpoint:
 ```bash
 stripe.exe listen --forward-to localhost:8000/payment/webhook/
 ```
 *(Copy the generated webhook signing secret returned in the console output and paste it into your local configurations).*
 
-#### 🐇 Terminal 3: Start Celery Worker Tasks
-Launch your asynchronous engine worker instance to begin consuming and evaluating deferred project pipeline tasks:
+#### ⚙️ Terminal 4: Start Celery Worker Tasks
+Launch your asynchronous engine worker instance with the `solo` pool execution flag (optimized for Windows machines):
 ```bash
-celery -A myshop worker --loglevel=info
+celery -A myshop worker --pool=solo -l info
 ```
 
-#### 🐍 Terminal 4: Run the Django Development Web Server
+#### 🐍 Terminal 5: Run the Django Development Web Server
 Start the local server instance to access the application UI components:
 ```bash
 python manage.py runserver
@@ -93,4 +99,3 @@ python manage.py runserver
 Before launching or pushing updates:
 1. Ensure your local sensitive variables (such as **Stripe API Secret Keys** and **Django Secret Keys**) are safely externalized via an invisible local environment `.env` wrapper.
 2. Verify that `db.sqlite3` configurations are strictly isolated out of your standard online repository tracking configurations via your root layout `.gitignore` file.
-
