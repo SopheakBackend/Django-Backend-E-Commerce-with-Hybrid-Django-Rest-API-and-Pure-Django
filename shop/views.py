@@ -43,7 +43,7 @@ def user_is_seller(user):
 @login_required
 def seller_dashboard(request):
     if not user_is_seller(request.user):
-        return redirect('products:product_list') 
+        return redirect('shop:list') 
     my_products = Product.objects.filter(seller=request.user)
     
     return render(request, 'shop/seller/dashboard.html', {'products': my_products})

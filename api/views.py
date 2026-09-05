@@ -55,7 +55,7 @@ def api_login_view(request):
 
 def login_page(request):
     if request.user.is_authenticated:
-        return redirect('product_list') 
+        return redirect('shop:list') 
     return render(request, 'api/login.html')
 
 def register_page(request):

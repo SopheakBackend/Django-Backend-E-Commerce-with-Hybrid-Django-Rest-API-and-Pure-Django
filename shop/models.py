@@ -72,11 +72,21 @@ class SellerProfile(models.Model):
     def __str__(self):
         return f"{self.user.username} - Seller: {self.is_seller}"
 
+
+# =======================================================
+# AUTOMATIC PROFILE CREATION (Django Signals)
+# =======================================================
+# This block guarantees that whenever a User account is created 
+# (via django admin, auth views, or standard terminal createsuperuser),
+# a corresponding SellerProfile is automatically attached to them.
+
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
+        # This ONLY runs when a brand new user registers
         SellerProfile.objects.create(user=instance)
     else:
+        # For old users who don't have a profile yet, we safely check first
         if not hasattr(instance, 'seller_profile'):
             SellerProfile.objects.create(user=instance)
         else:
