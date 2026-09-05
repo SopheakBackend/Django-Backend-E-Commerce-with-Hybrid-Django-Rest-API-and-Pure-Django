@@ -80,7 +80,7 @@ stripe.exe listen --forward-to localhost:8000/payment/webhook/
 ```
 *(Copy the generated webhook signing secret returned in the console output and paste it into your local configurations).*
 
-#### ⚙️ Terminal 4: Start Celery Worker Tasks
+#### ⚙️ Terminal 4: Start Celery Worker Tasks inside your VS CODE terminal
 Launch your asynchronous engine worker instance with the `solo` pool execution flag (optimized for Windows machines):
 ```bash
 celery -A myshop worker --pool=solo -l info
