@@ -21,12 +21,16 @@ def api_register_view(request):
     if User.objects.filter(username=username).exists():
         return Response({"error": "Username is already taken."}, status=status.HTTP_400_BAD_REQUEST)
 
+    print("=== REGISTER DEBUG ===")
+    print("Raw is_seller from request:", wants_to_be_seller)
+    print("Type:", type(wants_to_be_seller))
     user = User.objects.create_user(username=username, email=email, password=password)
 
     profile, created = SellerProfile.objects.get_or_create(user=user)
     profile.is_seller = wants_to_be_seller
     profile.save()
     login(request, user) 
+    print("Saved profile.is_seller =", profile.is_seller)
     refresh = RefreshToken.for_user(user)
 
     return Response({
