@@ -87,7 +87,7 @@ celery -A myshop worker --pool=solo -l info
 ```
 
 #### 🐍 Terminal 5: Run the Django Development Web Server
-DO not forget to generate a django secret key inside the setting.py
+Do not forget to generate a django secret key inside the setting.py
 ```bash
 python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 ```
